@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Employee Data</title>
+        <link rel="stylesheet" href="{% static 'css/empdata.css' %}">
+    </head>
+    <body>
+        <h1>Employee List</h1>
+        {% if emp_list %}
+           <table border='2px'>
+            <thead>
+                    <th>Employee No.</th>
+                    <th>Employee Name</th>
+                    <th>Employee Department</th>
+                    <th>Employee Phone</th>
+                    <th>Employee Email</th>
+                    <th>Employee Address</th>
+                    <th>Employee Salary</th>
+                    
+            </thead>
+            <tbody>
+                {% comment %} for each empoyee(emp) in employee list(emp_list) {% endcomment %}
+                {% for emp in emp_list %}
+                <tr>
+                    <td>{{ emp.eno }}</td>
+                    <td>{{ emp.ename }}</td>
+                    <td>{{ emp.edept }}</td>
+                    <td>{{ emp.ephone }}</td>
+                    <td>{{ emp.eemail }}</td>
+                    <td>{{ emp.eaddress }}</td>
+                    <td>{{ emp.esalary }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+           </table>
+           {% else %}
+              <h3>No Records Found !!!</h3>
+        {% endif %}   
+
+    </body>
+</html>

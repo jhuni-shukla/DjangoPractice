@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>NEWS PORTAL</title>
+               <style>
+                body{
+                    color: brown;
+                    background-color: rgb(19, 204, 142);
+                    text-align: center;
+                }
+                ul{
+                    text-align: center;
+                    font-size: 20px;
+                    list-style-type: none;
+                    
+                }
+            </style>
+    </head>
+    <body>
+        <h1>{{head_msg}}</h1>
+        <ul>
+            <li>{{sub_msg1}}</li>
+            <li>{{sub_msg2}}</li>
+            <li>{{sub_msg3}}</li>
+            <li>{{sub_msg4}}</li>
+            <li>{{sub_msg5}}</li>
+        </ul>
+        {% if type == 'movies' %}
+        <img src="{% static 'images/image2.jpg' %}" alt="">
+        <img src="{% static 'images/image2.jpg' %}" alt="">
+        {% elif type == 'sports' %}
+        <img src="{% static 'images/image3.jpg' %}" alt="">
+        <img src="{% static 'images/image3.jpg' %}" alt="">
+        {% elif type == 'politics' %}
+        <img src="{% static 'images/image4.jpg' %}" alt="">
+        <img src="{% static 'images/image4.jpg' %}" alt="">
+        {% endif %}   
+    </body>
+</html>

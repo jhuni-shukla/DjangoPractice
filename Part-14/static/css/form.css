@@ -1,0 +1,9 @@
+h1{
+    text-align: center;
+}
+body {
+    background: url("/static/images/websiteimg.webp");
+    color: blue;
+    background-repeat: no-repeat;
+    background-size:cover;
+}

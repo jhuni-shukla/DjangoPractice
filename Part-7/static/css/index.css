@@ -1,0 +1,11 @@
+body{
+    color: brown;
+    background-color: rgb(19, 204, 142);
+    text-align: center;
+}
+ul{
+    text-align: center;
+    font-size: 30px;
+    list-style-type: none;
+    
+}
