@@ -12,4 +12,3 @@ def add_view(request):
             return HttpResponse("Error")
     except Exception as e:
             return HttpResponse(e)
-

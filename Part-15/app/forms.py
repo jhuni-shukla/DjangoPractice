@@ -23,7 +23,7 @@
 
 #FOR INBUILT VALIDATORS : 
 #from django import forms    
-# from django.core import validators
+#from django.core import validators
 
 # class FeedBackForm(forms.Form):
     # name = forms.CharField()
@@ -55,21 +55,47 @@
     
 
 # SINGLE clean method validation
+# from django import forms
+
+# class FeedBackForm(forms.Form):
+#     name = forms.CharField()
+#     email = forms.EmailField()
+#     rollno=forms.IntegerField()
+#     password=forms.CharField(widget=forms.PasswordInput)
+#     feedback=forms.CharField(widget=forms.Textarea)  
+    
+
+#     def clean(self):
+#         print('total form validations........')
+#         total_cleaned_data = super().clean()
+#         inputname=total_cleaned_data['name']
+#         if inputname[0].lower() != 'd':
+#             raise forms.ValidationError('Name should start with d')
+#         inputmails = total_cleaned_data['email'] 
+#         print('validationing email........')   
+#         if inputmails[-10] != '@gmail.com':
+#             raise forms.ValidationError('Email extension must be gmail')
+
+
+#password and reenter password same
 from django import forms
+from django.core import validators
 
 class FeedBackForm(forms.Form):
     name = forms.CharField()
     email = forms.EmailField()
     rollno=forms.IntegerField()
-    feedback=forms.CharField(widget=forms.Textarea)    
-
+    password=forms.CharField(widget=forms.PasswordInput)
+    rpassword=forms.CharField(label='Password(Again)',widget=forms.PasswordInput) 
+    feedback=forms.CharField(widget=forms.Textarea) 
+    bot_handler = forms.CharField(required=False,widget=forms.HiddenInput)  
+    
     def clean(self):
-        print('total form validations........')
-        total_cleaned_data = super().clean()
-        inputname=total_cleaned_data['name']
-        if inputname[0].lower() != 'd':
-            raise forms.ValidationError('Name should start with d')
-        inputmails = total_cleaned_data['email'] 
-        print('validationing email........')   
-        if inputmails[-10] != '@gmail.com':
-            raise forms.ValidationError('Email extension must be gmail')
+            total_cleaned_data = super().clean()
+            pwd = total_cleaned_data['password']
+            rpwd = total_cleaned_data['rpassword']
+            if pwd != rpwd:
+                raise forms.ValidationError('Password must be same')
+            bot_handler_value=total_cleaned_data['bot_handler']
+            if len(bot_handler_value) > 0:
+                 raise forms.ValidationError('This is a bot')

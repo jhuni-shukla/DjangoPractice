@@ -4,7 +4,7 @@ from app.forms import FeedBackForm
 def Feedback_view(request):
     form = FeedBackForm()
     submitted = False
-    sname=''
+    name=''
     if request.method == 'POST':
         form = FeedBackForm(request.POST)
         if form.is_valid():
@@ -15,8 +15,5 @@ def Feedback_view(request):
             print('rollno:',form.cleaned_data['rollno'])
             print('feedback:',form.cleaned_data['feedback'])
             submitted=True   
-            sname = form.cleaned_data['name'] 
-        else:
-            print('some field validation failed')    
-    
-    return render(request, 'feedback.html',{'form':form,'submitted':submitted,'sname':sname})
+            name = form.cleaned_data['name']    
+    return render(request, 'feedback.html',{'form':form,'submitted':submitted,'name':name})
